@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -20,80 +21,83 @@
   <meta name="mobile-web-app-capable" content="yes">
 
   <link rel="stylesheet" href="home.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- HEADER -->
-  <header class="header">
-    <h1>Meus ingressos</h1>
+    <!-- HEADER -->
+    <header class="header">
+      <h1>Meus ingressos</h1>
 
-    <div class="icons">
-      <div class="icon">
-        <span class="material-symbols-outlined">notifications</span>
+      <div class="icons">
+        <div class="icon">
+          <span class="material-symbols-outlined">notifications</span>
+        </div>
+        <a href="admin.html" class="icon" style="text-decoration:none">
+          <span class="material-symbols-outlined">person</span>
+        </a>
       </div>
-      <a href="admin.html" class="icon" style="text-decoration:none">
-        <span class="material-symbols-outlined">person</span>
-      </a>
-    </div>
-  </header>
+    </header>
 
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab active">Próximos</button>
-    <button class="tab">Anteriores</button>
-    
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active">Próximos</button>
+      <button class="tab">Anteriores</button>
+
+    </div>
+
+    <!-- MÊS -->
+    <h2 class="month">Setembro 2026</h2>
+
+
+    <a href="ingresso.html" class="event-card" id="eventCard">
+      <div class="card-image">
+        <img src="assets/aespa.png" class="thumb" id="eventThumb">
+        <span class="badge">AGORA</span>
+      </div>
+
+      <div class="event-info">
+        <div class="top-line">
+          <span class="date" id="eventData">Sexta-feira, 04</span>
+          <span class="date" id="eventHorario">20:00hs</span>
+        </div>
+
+        <h3 id="eventNome">2026-27 aespa LIVE TOUR - SYNK : COMPLæXITY</h3>
+        <p id="eventLocal">Mercado Livre Arena Pacaembu</p>
+      </div>
+    </a>
+
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem('meus-ingressos-data');
+          if (!raw) return;
+          var dados = JSON.parse(raw);
+          var ev = dados && dados.evento;
+          if (!ev) return;
+          if (ev.thumb) document.getElementById('eventThumb').src = ev.thumb;
+          if (ev.nome) document.getElementById('eventNome').textContent = ev.nome;
+          if (ev.data) document.getElementById('eventData').textContent = ev.data;
+          if (ev.horario) document.getElementById('eventHorario').textContent = ev.horario;
+          if (ev.local) document.getElementById('eventLocal').textContent = ev.local;
+        } catch (e) { }
+      })();
+    </script>
+
   </div>
 
-  <!-- MÊS -->
-  <h2 class="month">Setembro 2026</h2>
-
-
-  <a href="ingresso.html" class="event-card" id="eventCard">
-    <div class="card-image">
-      <img src="assets/aespa.jpg" class="thumb" id="eventThumb">
-      <span class="badge">AGORA</span>
-    </div>
-
-    <div class="event-info">
-      <div class="top-line">
-        <span class="date" id="eventData">Sexta-feira, 04</span>
-        <span class="date" id="eventHorario">20:00hs</span>
-      </div>
-
-      <h3 id="eventNome">2026-27 aespa LIVE TOUR - SYNK : COMPLæXITY</h3>
-      <p id="eventLocal">Mercado Livre Arena Pacaembu</p>
-    </div>
-  </a>
-
-<script>
-(function() {
-  try {
-    var raw = localStorage.getItem('meus-ingressos-data');
-    if (!raw) return;
-    var dados = JSON.parse(raw);
-    var ev = dados && dados.evento;
-    if (!ev) return;
-    if (ev.thumb)   document.getElementById('eventThumb').src   = ev.thumb;
-    if (ev.nome)    document.getElementById('eventNome').textContent  = ev.nome;
-    if (ev.data)    document.getElementById('eventData').textContent  = ev.data;
-    if (ev.horario) document.getElementById('eventHorario').textContent = ev.horario;
-    if (ev.local)   document.getElementById('eventLocal').textContent  = ev.local;
-  } catch(e) {}
-})();
-</script>
-
-</div>
-
-<script type="module">
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('SW registrado'))
-      .catch(err => console.log('SW erro:', err));
-  }
-</script>
+  <script type="module">
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('SW registrado'))
+        .catch(err => console.log('SW erro:', err));
+    }
+  </script>
 
 </body>
+
 </html>
