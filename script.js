@@ -75,6 +75,7 @@ setInterval(updateQR, 20000);
 
 var carousel  = document.querySelector('.carousel');
 var track     = document.querySelector('.carousel-track');
+// ✅ Lido APÓS o render para garantir a contagem correta de ingressos
 var total     = document.querySelectorAll('.ticket-wrapper').length;
 var currentIndex = 0;
 
